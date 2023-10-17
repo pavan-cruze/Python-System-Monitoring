@@ -68,7 +68,7 @@ pipeline{
         }
         stage("Deploy to container"){
             steps{
-                sh "docker run -d --name python1 -p 5000:5000 sevenajay/python-system-monitoring:latest"
+                sh "docker run -d --name python1 -p 5000:5000 pavancruze1/python-system-monitoring:latest"
             } 
         }
     }
