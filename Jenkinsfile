@@ -61,11 +61,10 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "make push"
-                    
-                
-            
-        
-
+                   }
+                }
+            }
+        }
             }
         }
     }
