@@ -31,10 +31,10 @@ lint-fix: venv  ## 📜 Lint & format, will try to fix errors and modify code
 
 image:  ## 🔨 Build container image from Dockerfile 
 	docker build . --file build/Dockerfile \
-	--tag $(IMAGE_REG)/$(IMAGE_REPO):$(IMAGE_TAG)
+	--tag $(IMAGE_REG)/pavancruze1/python-system-monitoring:$(IMAGE_TAG)
 
 push:  ## 📤 Push container image to registry 
-	docker push $(IMAGE_REG)/$(IMAGE_REPO):$(IMAGE_TAG)
+	docker push $(IMAGE_REG)/pavancruze1/python-system-monitoring:$(IMAGE_TAG)
 
 run: venv  ## 🏃 Run the server locally using Python & Flask
 	. $(SRC_DIR)/.venv/bin/activate \
