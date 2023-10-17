@@ -14,7 +14,7 @@ pipeline{
         }
         stage('Checkout From Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/pavan-cruze/Python-System-Monitoring.git'
+                git branch: 'main', url: 'https://github.com/Aj7Ay/Python-System-Monitoring.git'
             }
         }
         stage("Sonarqube Analysis "){
@@ -43,10 +43,7 @@ pipeline{
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
-    }
-}
-
-       stage("Docker Build & tag"){
+        stage("Docker Build & tag"){
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
@@ -69,3 +66,10 @@ pipeline{
                 }
             }
         }
+        stage("Deploy to container"){
+            steps{
+                sh "docker run -d --name python1 -p 5000:5000 sevenajay/python-system-monitoring:latest"
+            } 
+        }
+    }
+}
