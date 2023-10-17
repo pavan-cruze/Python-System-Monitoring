@@ -41,6 +41,31 @@ pipeline{
             steps{
                 dependencyCheck additionalArguments: '--scan ./ --format XML ', odcInstallation: 'DP-Check'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        
+       stage("Docker Build & tag"){
+            steps{
+                script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
+                       sh "make image"
+                    }
+                }
+            }
+        }
+        stage("TRIVY"){
+            steps{
+                sh "trivy image sevenajay/python-system-monitoring:latest > trivy.txt" 
+            }
+        }
+        stage("Docker Push"){
+            steps{
+                script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
+                       sh "make push"
+                    
+                
+            
+        
+
             }
         }
     }
