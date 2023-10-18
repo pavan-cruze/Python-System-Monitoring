@@ -14,7 +14,7 @@ pipeline{
         }
         stage('Checkout From Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/pavan-cruze/Python-System-Monitoring.git'
+                git branch: 'main', url: 'https://github.com/Aj7Ay/Python-System-Monitoring.git'
             }
         }
         stage("Sonarqube Analysis "){
